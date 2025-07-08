@@ -37,7 +37,7 @@ echo "$releases" | jq -c '.[]' | while read -r release; do
 
     if [[ -z "$version" ]]; then
         echo "version error"
-        break
+        continue
     fi
 
     if version_ge "$version" "16.0.0"; then
@@ -58,6 +58,7 @@ echo "$releases" | jq -c '.[]' | while read -r release; do
         fi
     else
         echo "skip $tag_name (version $version < 16.0.0)"
+        break
     fi
 done
 
