@@ -1,0 +1,37 @@
+name: build
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash --noprofile --norc -CeEuo pipefail {0}
+
+on:
+  push:
+    tags:
+      - "v*"
+    branches:
+      - "main"
+  pull_request:
+  workflow_dispatch:
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  build-windows:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - name: download
+        run: |
+          bash ./build.sh
+
+      - name: release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.build.outputs.tag }}
+          artifacts: "dist/*.zip"
+          allowUpdates: true
