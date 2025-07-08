@@ -5,3 +5,7 @@ https://darthsternie.net/switch-firmwares/
 https://prodkeys.net/yuzu-prod-keys-n4/
 
 https://github.com/THZoria/NX_Firmware
+
+https://prodkeys.net/ryujinx-prod-keys-n13/
+
+https://prodkeys.net/yuzu-prod-keys-n13/

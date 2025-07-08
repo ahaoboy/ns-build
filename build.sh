@@ -3,6 +3,13 @@
 DIST_DIR=dist
 mkdir -p $DIST_DIR
 
+
+keys=("https://files.prodkeys.net/ProdKeys.net-v20.0.1.zip" "https://files.prodkeys.net/ProdKeys.net-v20.0.0.zip" "https://files.prodkeys.net/ProdKeys.net-v19.0.1.zip" "https://files-prodkeys.b-cdn.net/prodkeys/Prodkeys.net_v19.0.0.zip" "https://files-prodkeys.b-cdn.net/prodkeys/ProdKeys.net-v18.-1-0.zip" "https://files-prodkeys.b-cdn.net/prodkeys/prodkeys.net-18-0-1.zip" "https://files-prodkeys.b-cdn.net/prodkeys/ProdKeys.net-v18.0.0.zip" "https://files-prodkeys.b-cdn.net/prodkeys/prodkeys.net-v17.0.1.zip" "https://files-prodkeys.b-cdn.net/prodkeys/ProdkKeys.net-V17.0.0.zip" "https://files-prodkeys.b-cdn.net/prodkeys/Prodkeys.net-V16.1.0.zip" "https://files-prodkeys.b-cdn.net/prodkeys/Keys-16.0.3-By-Prodkeys.net_.zip" "https://files-prodkeys.b-cdn.net/prodkeys/Keys-16.0.2-By-Prodkeys.net_.zip" "https://files-prodkeys.b-cdn.net/prodkeys/Keys-16.0.1.zip" "https://files-prodkeys.b-cdn.net/prodkeys/Keys-16-by-Prodkeys.net_.zip")
+
+for url in "${keys[@]}"; do
+    curl -L "$url" -o "$DIST_DIR/$(basename "$url")"
+done
+
 function version_ge() {
     local v1=(${1//./ })
     local v2=(${2//./ })
