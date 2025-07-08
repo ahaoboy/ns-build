@@ -32,6 +32,7 @@ jobs:
 
       - name: release
         uses: ncipollo/release-action@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           tag: ${{ steps.build.outputs.tag }}
           artifacts: "dist/*.zip"
