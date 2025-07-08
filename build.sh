@@ -22,7 +22,7 @@ function version_ge() {
     return 0
 }
 
-releases=$(curl -s -H "Authorization: token ${{ $GITHUB_TOKEN }}" "https://api.github.com/repos/THZoria/NX_Firmware/releases?per_page=100")
+releases=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/THZoria/NX_Firmware/releases?per_page=100")
 
 if [ $? -ne 0 ]; then
     echo "release not found"
@@ -47,7 +47,7 @@ echo "$releases" | jq -c '.[]' | while read -r release; do
 
         if [ -n "$asset_url" ]; then
             echo "downloading $asset_name from $asset_url"
-            curl -s -L -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "$asset_url" -o "$DIST_DIR/$asset_name"
+            curl -s -L -H "Authorization: token $GITHUB_TOKEN" "$asset_url" -o "$DIST_DIR/$asset_name"
             if [ $? -eq 0 ]; then
                 echo "successfully download $asset_name"
             else
